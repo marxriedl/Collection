@@ -39,7 +39,7 @@ func (it *iterator)  Remove() {
 	it.ll.Remove(val)
 }
 
-func CreateLinkedList() *linkedlist {
+func CreateLinkedList() collection.List {
 	return &linkedlist{0, nil, nil}
 }
 
@@ -173,7 +173,7 @@ func (ll *linkedlist) Intersect(coll collection.Collection) bool {
 	return false
 }
 func (ll *linkedlist) Slice() []interface {} {
-	arr := make([]interface {}, ll.Slice())
+	arr := make([]interface {}, ll.Size())
 	i := 0
 	for val := range ll.IterChan() {
 		arr[i] = val

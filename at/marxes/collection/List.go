@@ -17,11 +17,11 @@ type List interface {
 	// AddAt adds the passed element at the specified position
 	AddAt(interface {}, int) (bool, error)
 	// AddAllAt adds the elements of the Collection at the specified position
-	AddAllAt(*Collection, int) (bool, error)
+	AddAllAt(Collection, int) (bool, error)
 	// RemoveAt removes the element at the specified position
 	RemoveAt(int) (bool, error)
 	// SubList returns a sub list from lowIndex, including, to highIndex, excluding, error if out of bounds
-	SubList(int, int) (*List, error)
+	SubList(int, int) (List, error)
 	// Slice returns a slice form lowIndex, including, to highIndex, excluding, error if out of bounds
 	//Slice(int, int) []interface {}
 	// Iter returns an Iterator
