@@ -70,7 +70,6 @@ func findIndexP(ll *linkedlist, pos int) (prev, n *node){
 	it := ll.head
 	p := ll.head
 	for idx := 0; idx < pos ; idx ++ {
-		idx++
 		p = it
 		it = it.next
 	}
@@ -80,7 +79,6 @@ func findIndexP(ll *linkedlist, pos int) (prev, n *node){
 func findIndex(ll *linkedlist, pos int) (n *node){
 	it := ll.head
 	for idx := 0; idx < pos ; idx ++ {
-		idx++
 		it = it.next
 	}
 	return it
@@ -175,8 +173,8 @@ func (ll *linkedlist) Intersect(coll collection.Collection) bool {
 func (ll *linkedlist) Slice() []interface {} {
 	arr := make([]interface {}, ll.Size())
 	i := 0
-	for val := range ll.IterChan() {
-		arr[i] = val
+	for it := ll.head; it != nil ; it = it.next {
+		arr[i] = it.data
 		i++
 	}
 	return arr
@@ -206,10 +204,8 @@ func (ll *linkedlist) Collect(f func(interface {}) bool) collection.Collection{
 func (ll *linkedlist)  IterChan() <- chan interface {} {
 	ch := make(chan interface {});
 	go func() {
-		it := ll.head
-		for it != nil {
+		for it := ll.head; it != nil ;it = it.next {
 			ch <- it.data
-			it = it.next
 		}
 	}();
 	return ch
@@ -293,6 +289,7 @@ func (ll *linkedlist) SubList(low, high int) (collection.List, error) {
 	}
 	return list, nil
 }
+
 func (ll *linkedlist) Iter() collection.Iterator {
 	return &iterator{ll.head, ll}
 }
